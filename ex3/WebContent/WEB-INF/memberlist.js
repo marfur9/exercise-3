@@ -12,7 +12,18 @@ function init(){
 }
 
 function getTable(){
+	//For something
+	let row = table.insertRow();
+	let fNameCell = row.insertCell(0);
+	let lNameCell = row.insertCell(1);
+	let addressCell = row.insertCell(2);
+	let phoneCell = row.insertCell(3);
 	
+	//fNameCell.innerHTML = member.fName;
+	//lNameCell.innerHTML = member.lName;
+	//addressCell.innerHTML = member.address;
+	//phoneCell.innerHTML = member.phone;
+	//end for something
 }
 
 function updateMembers(){
