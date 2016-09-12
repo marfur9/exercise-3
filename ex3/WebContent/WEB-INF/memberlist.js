@@ -28,7 +28,10 @@ function editMember(member){
 }
 
 function addMember(){
-	
+	let newFName = prompt("Enter firstname", "");
+	let newLName = prompt("Enter lastname", "");
+	let newAddress = prompt("Enter address", "");
+	let newPhone = prompt("Enter phone number", "");
 }
 
 window.addEventListener("load",init,true)
