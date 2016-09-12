@@ -67,10 +67,10 @@ function addMember(){ //test,         addMember + getTable
 	let addressCell = row.insertCell(2);
 	let phoneCell = row.insertCell(3);
 	
-	fNameCell.innerHTML = newFName;
-	lNameCell.innerHTML = newLName;
-	addressCell.innerHTML = newAddress;
-	phoneCell.innerHTML = newPhone;
+	fNameCell.textContent = newFName;
+	lNameCell.textContent = newLName;
+	addressCell.textContent = newAddress;
+	phoneCell.textContent = newPhone;
 }
 
 window.addEventListener("load",init,true)
