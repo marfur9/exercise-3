@@ -28,7 +28,7 @@ function getTable(){
 	//end for something
 }
 
-function updateMembers(idn, fname, lname, address, phone){
+function updateMember(idn, fname, lname, address, phone){
 	let table = document.getElementById("membertable");
 	let row = table.getElementById("r"+idn);
 	
