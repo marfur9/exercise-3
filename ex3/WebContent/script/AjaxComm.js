@@ -17,7 +17,7 @@ function viewMessage(m) {
 }
 
 function getUpdates(e) {
-	let url = config.servicesPath + "/updates"
+	let url = "../Mservices/data/updates"
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = viewMessage
     ajax.get(-1)
