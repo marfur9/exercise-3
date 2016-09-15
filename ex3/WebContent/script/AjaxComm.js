@@ -4,6 +4,8 @@
 
 "use strict";
   
+let memberId = null;
+
 function onLoad() {
 	getUpdates(-1);
 }
@@ -22,10 +24,11 @@ function viewMessage(m) {
 }
 
 function getUpdates(e) {
-	let url = "../Mservices/data/updates"
+	memberId = e
+	let url = "../Mservices/data/updates/"+memberId
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = viewMessage
-    ajax.get(e)
+    ajax.get()
 }
     
 window.addEventListener("DOMContentLoaded",onLoad,true)
