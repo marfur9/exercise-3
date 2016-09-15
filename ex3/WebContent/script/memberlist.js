@@ -13,68 +13,66 @@ function init(){
 }
 
 
-function findRow(idn){
-	let table = document.getElementById("memberTable");
-	let row = null;
-	let rows = table.rows;
-	
-	for(let r of rows){
-		if(r.getAttribute("class")==("r"+idn)){
-			row=r;
-		}
-	}
-	
-	console.log(row);
-	return row;
-}
+
 
 function updateMember(jsontext){
 	let member = JSON.parse(jsontext);
 	console.log(member);
 	let table = document.getElementById("memberTable");
-	let row = findRow(member.id);
+	let row = null;
+	let rows = table.rows;
+	
+	
+	
+	for(let r of rows){
+		if(r.id==("r"+member.memberId)){
+			row=r;
+		}
+	}
 	
 	if(row!=null){
 		console.log("found row");
-		let fnameCell = row.getElementById("fnameCell");
-		fnameCell.textContent = member.fname;
-		let lnameCell = row.getElementById("lnameCell");
-		lnameCell.textContent = member.lname;
-		let addressCell = row.getElementById("addressCell");
+		let fnameCell = row.cells[0];
+		fnameCell.textContent = member.firstname;
+		let lnameCell = row.cells[1];
+		lnameCell.textContent = member.lastname;
+		let addressCell = row.cells[2];
 		addressCell.textContent = member.address;
-		let phoneCell = row.getElementById("phoneCell");
+		let phoneCell = row.cells[3];
 		phoneCell.textContent = member.phone;
 	}else{
 		console.log("row not found");
 		row = table.insertRow();
-		row.id = ("r"+idn);
+		row.id = ("r"+member.memberId);
 		
 		let fnameCell = row.insertCell(0);
 		fnameCell.id = "fnameCell";
-		fnameCell.textContent = fname;
+		fnameCell.textContent = member.firstname;
 		
 		let lnameCell = row.insertCell(1);
 		lnameCell.id = "lnameCell";
-		lnameCell.textContent = lname;
+		lnameCell.textContent = member.lastname;
 		
 		let addressCell = row.insertCell(2);
 		addressCell.id = "addressCell";
-		addressCell.textContent = address;
+		addressCell.textContent = member.address;
 		
 		let phoneCell = row.insertCell(3);
 		phoneCell.id = "phoneCell";
-		phoneCell.textContent = phone;
+		phoneCell.textContent = member.phone;
 		
 		let deleteCell = row.insertCell(4);
 		let deleteButton = document.createElement("input");
 		deleteButton.setAttribute("type", "button");
 		deleteButton.value = "Delete";
+		deleteButton.setAttribute("class", ("r"+member.memberId));
 		deleteCell.appendChild(deleteButton);
 		
 		let editCell = row.insertCell(5);
 		let editButton = document.createElement("input");
 		editButton.setAttribute("type", "button");
 		editButton.value = "Edit";
+		editButton.setAttribute("class", ("r"+member.memberId));
 		editCell.appendChild(editButton);
 		
 		editButton.addEventListener("click", editMember);
@@ -86,28 +84,45 @@ function updateMember(jsontext){
 function deleteMember(){
 	let table = document.getElementById("memberTable");
 	let idn = this.getAttribute("class");
+	let id = parseInt(idn.substring(1,idn.length));
 	
 	
 	//test
-	let row = findRow(idn);
+	let row = null;
+	let rows = table.rows;
+	
+	for(let r of rows){
+		if(r.id==("r"+id)){
+			row=r;
+		}
+	}
 	
 	table.tBodies[0].removeChild(row);
 }
 
 function editMember(){
 	let idn = this.getAttribute("class");
-	let row = findRow(parseInt(idn,10));
+	let id = parseInt(idn.substring(1,idn.length));
+	let table = document.getElementById("memberTable");
+	let row = null;
+	let rows = table.rows;
+	
+	for(let r of rows){
+		if(r.id==("r"+id)){
+			row=r;
+		}
+	}
 	
 	let newFName = prompt("Enter firstname", row.cells[0].textContent);
 	let newLName = prompt("Enter lastname", row.cells[1].textContent);
 	let newAddress = prompt("Enter address", row.cells[2].textContent);
 	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
 	
-	var jsontext = 	"{id:" + id +
-	",fname:" + newFName +
-	",lname:" + newLName +
-	",address:" + newAddress +
-	",phone:" + newPhone + '}';
+	var jsontext = 	"{\"memberId\":" + id +
+	",\"firstname\":" + newFName +
+	",\"lastname\":" + newLName +
+	",\"address\":" + newAddress +
+	",\"phone\":" + newPhone + '}';
 	updateMember(jsontext);
 	//send changed data to database
 }
@@ -128,11 +143,14 @@ function addMember(){ //test,         addMember + getTable
 	let newPhone = prompt("Enter phone number", "");
 	let id = Math.floor((Math.random()*100)+1);
 	
-	var jsontext = 	"{id:" + id +
-	",fname:" + newFName +
-	",lname:" + newLName +
-	",address:" + newAddress +
-	",phone:" + newPhone + '}';
+	
+	var jsontext = 	"{\"memberId\":" + id +
+	",\"firstname\":" + newFName +
+	",\"lastname\":" + newLName +
+	",\"address\":" + newAddress +
+	",\"phone\":" + newPhone + '}';
+	
+	//change the method here when server is up, boy
 	updateMember(jsontext);
 }
 
