@@ -150,7 +150,6 @@ function addMember(){ //test,         addMember + getTable
 	",\"address\":" + newAddress +
 	",\"phone\":" + newPhone + '}';
 	
-	
 	//change the method here when server is up, boy
 	updateMember(jsontext);
 }
