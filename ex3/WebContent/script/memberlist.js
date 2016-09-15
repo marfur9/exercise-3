@@ -30,30 +30,48 @@ function getTable(){
 	//end for something
 }
 
-function updateMember(idn, fname, lname, address, phone){
-	let table = document.getElementById("membertable");
-	let row = table.getElementById("r"+idn);
+function findRow(idn){
+	let table = document.getElementById("memberTable");
+	let row = null;
+	let rows = table.rows;
+	
+	for(let r of rows){
+		if(r.getAttribute("class")==("r"+idn)){
+			row=r;
+		}
+	}
+	
+	console.log(row);
+	return row;
+}
+
+function updateMember(jsontext){
+	let member = JSON.parse(jsontext);
+	let table = document.getElementById("memberTable");
+	let row = findRow(member.id);
 	
 	if(row!=null){
+		console.log("found row");
 		let fnameCell = row.getElementById("fnameCell");
-		fnameCell.textContent = fname;
+		fnameCell.textContent = member.fname;
 		let lnameCell = row.getElementById("lnameCell");
-		lnameCell.textContent = lname;
+		lnameCell.textContent = member.lname;
 		let addressCell = row.getElementById("addressCell");
-		addressCell.textContent = address;
+		addressCell.textContent = member.address;
 		let phoneCell = row.getElementById("phoneCell");
-		phoneCell.textContent = phone;
+		phoneCell.textContent = member.phone;
 	}else{
+		console.log("row not found");
 		row = table.insertRow();
 		row.id = ("r"+idn);
 		
 		let fnameCell = row.insertCell(0);
 		fnameCell.id = "fnameCell";
-		fNameCell.textContent = fname;
+		fnameCell.textContent = fname;
 		
 		let lnameCell = row.insertCell(1);
 		lnameCell.id = "lnameCell";
-		fNameCell.textContent = lname;
+		lnameCell.textContent = lname;
 		
 		let addressCell = row.insertCell(2);
 		addressCell.id = "addressCell";
@@ -82,31 +100,32 @@ function updateMember(idn, fname, lname, address, phone){
 }
 
 function deleteMember(){
-	console.log(this);
+	let table = document.getElementById("memberTable");
 	let idn = this.getAttribute("class");
 	
 	
 	//test
-	let table = document.getElementById("memberTable");
-	let row = null;
-	let rows = table.rows;
-	
-	for(let r of rows){
-		if(r.getAttribute("class")==idn){
-			row=r;
-		}
-	}
+	let row = findRow(idn);
 	
 	table.tBodies[0].removeChild(row);
 }
 
 function editMember(){
+	let idn = this.getAttribute("class");
+	let row = findRow(parseInt(idn,10));
 	
-	let newFName = prompt("Enter firstname", "");
-	let newLName = prompt("Enter lastname", "");
-	let newAddress = prompt("Enter address", "");
-	let newPhone = prompt("Enter phone number", "");
+	let newFName = prompt("Enter firstname", row.cells[0].textContent);
+	let newLName = prompt("Enter lastname", row.cells[1].textContent);
+	let newAddress = prompt("Enter address", row.cells[2].textContent);
+	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
 	
+	console.log("{id:" + parseInt(idn,10) + ",fname:" + newFName + ",lname:" + newLName + ",address:" + newAddress +",phone:" + newPhone + '}');
+	var jsontext = 	"{id:" + idn +
+	",fname:" + newFName +
+	",lname:" + newLName +
+	",address:" + newAddress +
+	",phone:" + newPhone + '}';
+	updateMember(jsontext);
 	//send changed data to database
 }
 
