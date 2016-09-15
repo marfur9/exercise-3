@@ -101,10 +101,11 @@ function deleteMember(){
 }
 
 function editMember(){
-//	let newFName = prompt("Enter firstname", member.fName);
-//	let newLName = prompt("Enter lastname", member.lName);
-//	let newAddress = prompt("Enter address", member.address);
-//	let newPhone = prompt("Enter phone number", member.phone);
+	
+	let newFName = prompt("Enter firstname", "");
+	let newLName = prompt("Enter lastname", "");
+	let newAddress = prompt("Enter address", "");
+	let newPhone = prompt("Enter phone number", "");
 	
 	//send changed data to database
 }
