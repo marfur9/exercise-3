@@ -12,9 +12,10 @@ function onLoad() {
   
 function viewMessage(m) {
 	var data = JSON.parse(m);
-	
-	for (var i = 0; i < data.newMembers.length; i++) {
-		var jsontext = JSON.stringify(data.newMembers[i])
+	console.log("Members found: " + data.updates.newMembers.length)
+	for (var i = 0; i < data.updates.newMembers.length; i++) {
+		var jsontext = JSON.stringify(data.updates.newMembers[i])
+		console.log(data.updates.newMembers[i])
 		updateMember(jsontext)
 	}
 }
