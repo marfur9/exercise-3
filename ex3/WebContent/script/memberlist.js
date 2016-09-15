@@ -3,7 +3,6 @@
  */
 "use strict";
 
-let id= 0;
 
 function init(){
 	let table = document.getElementById("memberTable");
@@ -13,22 +12,6 @@ function init(){
 	//setInterval(getTable,10000);
 }
 
-function getTable(){
-	let table = document.getElementById("memberTable");
-	//For something
-	let row = table.insertRow();
-	let fNameCell = row.insertCell(0);
-	let lNameCell = row.insertCell(1);
-	let addressCell = row.insertCell(2);
-	let phoneCell = row.insertCell(3);
-	
-	//fNameCell.innerHTML = member.fName;
-	//lNameCell.innerHTML = member.lName;
-	//addressCell.innerHTML = member.address;
-	//phoneCell.innerHTML = member.phone;
-	
-	//end for something
-}
 
 function findRow(idn){
 	let table = document.getElementById("memberTable");
@@ -47,6 +30,7 @@ function findRow(idn){
 
 function updateMember(jsontext){
 	let member = JSON.parse(jsontext);
+	console.log(member);
 	let table = document.getElementById("memberTable");
 	let row = findRow(member.id);
 	
@@ -119,8 +103,7 @@ function editMember(){
 	let newAddress = prompt("Enter address", row.cells[2].textContent);
 	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
 	
-	console.log("{id:" + parseInt(idn,10) + ",fname:" + newFName + ",lname:" + newLName + ",address:" + newAddress +",phone:" + newPhone + '}');
-	var jsontext = 	"{id:" + idn +
+	var jsontext = 	"{id:" + id +
 	",fname:" + newFName +
 	",lname:" + newLName +
 	",address:" + newAddress +
@@ -143,37 +126,14 @@ function addMember(){ //test,         addMember + getTable
 	let newLName = prompt("Enter lastname", "");
 	let newAddress = prompt("Enter address", "");
 	let newPhone = prompt("Enter phone number", "");
+	let id = Math.floor((Math.random()*100)+1);
 	
-	let table = document.getElementById("memberTable");
-	let row = table.insertRow();
-	row.setAttribute("class",("r"+id));
-	let fNameCell = row.insertCell(0);
-	let lNameCell = row.insertCell(1);
-	let addressCell = row.insertCell(2);
-	let phoneCell = row.insertCell(3);
-	
-	let deleteCell = row.insertCell(4);
-	let deleteButton = document.createElement("input");
-	deleteButton.setAttribute("type", "button");
-	deleteButton.value = "Delete";
-	deleteButton.setAttribute("class","r"+id);
-	deleteCell.appendChild(deleteButton);
-	
-	let editCell = row.insertCell(5);
-	let editButton = document.createElement("input");
-	editButton.setAttribute("type", "button");
-	editButton.value = "Edit";
-	editButton.setAttribute("class","r"+id);
-	editCell.appendChild(editButton);
-	
-	fNameCell.textContent = newFName;
-	lNameCell.textContent = newLName;
-	addressCell.textContent = newAddress;
-	phoneCell.textContent = newPhone;
-	
-	editButton.addEventListener("click", editMember);
-	deleteButton.addEventListener("click", deleteMember);
-	id++;
+	var jsontext = 	"{id:" + id +
+	",fname:" + newFName +
+	",lname:" + newLName +
+	",address:" + newAddress +
+	",phone:" + newPhone + '}';
+	updateMember(jsontext);
 }
 
 window.addEventListener("load",init,true)
