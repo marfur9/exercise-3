@@ -16,19 +16,33 @@ function passMembers(m) {
 	logId = data.updates.logId;
 	
 	if (data.updates.newMembers != null) {
-		console.log("New members found: " + data.updates.newMembers.length)
-		for (var i = 0; i < data.updates.newMembers.length; i++) {
-			var jsontext = JSON.stringify(data.updates.newMembers[i])
-			console.log(data.updates.newMembers[i])
+		if (data.updates.newMembers.length != null) {
+			console.log("New members found: " + data.updates.newMembers.length)
+			for (var i = 0; i < data.updates.newMembers.length; i++) {
+				var jsontext = JSON.stringify(data.updates.newMembers[i])
+				console.log(data.updates.newMembers[i])
+				updateMember(jsontext)
+			}
+		} else {
+			console.log("New members found: 1")
+			var jsontext = JSON.stringify(data.updates.newMembers)
+			console.log(data.updates.newMembers)
 			updateMember(jsontext)
 		}
 	}
 	
 	if (data.updates.updatedMembers != null) {
-		console.log("Updated members found: " + data.updates.updatedMembers.length)
-		for (var i = 0; i < data.updates.updatedMembers.length; i++) {
-			var jsontext = JSON.stringify(data.updates.updatedMembers[i])
-			console.log(data.updates.updatedMembers[i])
+		if (data.updates.updatedMembers.length != null) {
+			console.log("Updated members found: " + data.updates.updatedMembers.length)
+			for (var i = 0; i < data.updates.updatedMembers.length; i++) {
+				var jsontext = JSON.stringify(data.updates.updatedMembers[i])
+				console.log(data.updates.updatedMembers[i])
+				updateMember(jsontext)
+			}
+		} else {
+			console.log("Updated members found: 1")
+			var jsontext = JSON.stringify(data.updates.updatedMembers)
+			console.log(data.updates.updatedMembers)
 			updateMember(jsontext)
 		}
 	}
