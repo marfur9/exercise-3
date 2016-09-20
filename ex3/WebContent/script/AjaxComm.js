@@ -64,8 +64,8 @@ function postMember(m) {
 }
 
 function putMember(m) {
-	member = JSON.parse(m);
-	memberId = member.memberId
+	let member = JSON.parse(m);
+	let memberId = member.memberId
 	let url = "../Mservices/data/member/"+memberId
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
@@ -73,8 +73,8 @@ function putMember(m) {
 }
 
 function deleteMember(m) {
-	member = JSON.parse(m);
-	memberId = member.memberId
+	let member = JSON.parse(m);
+	let memberId = member.memberId
 	let url = "../Mservices/data/member/"+memberId
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
