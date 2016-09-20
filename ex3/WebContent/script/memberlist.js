@@ -1,5 +1,5 @@
 /**
- * haha, this is for the hecking code stoopid
+ * UI handler
  */
 "use strict";
 
@@ -9,7 +9,7 @@ function init(){
 	let button = document.getElementById("addMember");
 	
 	button.addEventListener("click",addMember);
-	//setInterval(getTable,10000);
+	setInterval(getUpdates,10000);
 }
 
 
@@ -17,7 +17,6 @@ function init(){
 
 function updateMember(jsontext){
 	let member = JSON.parse(jsontext);
-	console.log(member);
 	let table = document.getElementById("memberTable");
 	let row = null;
 	let rows = table.rows;
@@ -31,7 +30,6 @@ function updateMember(jsontext){
 	}
 	
 	if(row!=null){
-		console.log("found row");
 		let fnameCell = row.cells[0];
 		fnameCell.textContent = member.firstname;
 		let lnameCell = row.cells[1];
@@ -41,7 +39,6 @@ function updateMember(jsontext){
 		let phoneCell = row.cells[3];
 		phoneCell.textContent = member.phone;
 	}else{
-		console.log("row not found");
 		row = table.insertRow();
 		row.id = ("r"+member.memberId);
 		
@@ -86,8 +83,6 @@ function delMember(){
 	let idn = this.getAttribute("class");
 	let id = parseInt(idn.substring(1,idn.length));
 	
-	
-	//test
 	let row = null;
 	let rows = table.rows;
 	
@@ -106,8 +101,20 @@ function delMember(){
 	",\"lastname\":" + newLName +
 	",\"address\":" + newAddress +
 	",\"phone\":" + newPhone + '}';
-	table.tBodies[0].removeChild(row);
 	deleteMember(jsontext);
+}
+
+function delRow(id){
+	let table = document.getElementById("memberTable");
+	let row = null;
+	let rows = table.rows;
+	
+	for(let r of rows){
+		if(r.id==("r"+id)){
+			row=r;
+		}
+	}
+	table.tBodies[0].removeChild(row);
 }
 
 function editMember(){
@@ -134,7 +141,6 @@ function editMember(){
 	",\"address\":" + newAddress +
 	",\"phone\":" + newPhone + '}';
 	putMember(jsontext);
-	//send changed data to database
 }
 
 function addMember(){ 
@@ -142,16 +148,13 @@ function addMember(){
 	let newLName = prompt("Enter lastname", "");
 	let newAddress = prompt("Enter address", "");
 	let newPhone = prompt("Enter phone number", "");
-	let id = Math.floor((Math.random()*100)+1);
 	
 	
-	var jsontext = 	"{\"memberId\":" + id +
-	",\"firstname\":" + newFName +
+	var jsontext = 	"{\"firstname\":" + newFName +
 	",\"lastname\":" + newLName +
 	",\"address\":" + newAddress +
 	",\"phone\":" + newPhone + '}';
 	
-	//change the method here when server is up, boy
 	postMember(jsontext);
 }
 
