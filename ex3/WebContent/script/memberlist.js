@@ -137,7 +137,7 @@ function editMember(){
 	//send changed data to database
 }
 
-function addMember(){ //test,         addMember + getTable
+function addMember(){ 
 	let newFName = prompt("Enter firstname", "");
 	let newLName = prompt("Enter lastname", "");
 	let newAddress = prompt("Enter address", "");
