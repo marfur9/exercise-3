@@ -11,7 +11,7 @@ function onLoad() {
 }
 
 //Passes returned members to the memberlist
-function passMember(m) {
+function passMembers(m) {
 	var data = JSON.parse(m);
 	console.log("Members found: " + data.updates.newMembers.length)
 	for (var i = 0; i < data.updates.newMembers.length; i++) {
@@ -21,11 +21,15 @@ function passMember(m) {
 	}
 }
 
+function passMember(m) {
+		updateMember(jsontext)
+}
+
 function getUpdates(e) {
 	memberId = e
 	let url = "../Mservices/data/updates/"+memberId
     const ajax = new AJAXConnection(url)
-    ajax.onsuccess = passMember
+    ajax.onsuccess = passMembers
     ajax.get()
 }
 
