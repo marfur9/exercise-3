@@ -5,7 +5,8 @@
 "use strict";
   
 let memberId = null;
-D
+let logId = -1;
+
 function onLoad() {
 	getUpdates();
 }
