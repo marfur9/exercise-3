@@ -72,7 +72,7 @@ function updateMember(jsontext){
 		editCell.appendChild(editButton);
 		
 		editButton.addEventListener("click", editMember);
-		deleteButton.addEventListener("click", deleteMember);
+		deleteButton.addEventListener("click", delMember);
 		
 	}
 }
