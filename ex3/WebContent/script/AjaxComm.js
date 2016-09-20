@@ -1,10 +1,9 @@
 /**
  * 
  */
-
 "use strict";
-let memberId = null;
-let logId = -1;
+
+var logId = -1
 
 function onLoad() {
 	getUpdates();
@@ -14,7 +13,7 @@ function onLoad() {
 //Passes returned members to the memberlist
 function passMembers(m) {
 	var data = JSON.parse(m);
-	logId = data.logId;
+	logId = data.updates.logId;
 	
 	if (data.updates.newMembers != null) {
 		console.log("New members found: " + data.updates.newMembers.length)
