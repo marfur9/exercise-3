@@ -130,7 +130,7 @@ function addMember(){
 	
 	var json = 	{firstname:newFName, lastname: newLName, address:newAddress,phone:newPhone}
 	let jsontext = JSON.stringify(json)
-	postMember(JSON.stringify(jsontext));
+	postMember(jsontext);
 }
 
 window.addEventListener("load",init,true)
