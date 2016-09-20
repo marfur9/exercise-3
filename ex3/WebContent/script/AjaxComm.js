@@ -60,7 +60,8 @@ function postMember(m) {
 	let url = "../Mservices/data/member/"
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
-    ajax.post(m)
+    var jsontext = JSON.stringify(m)
+    ajax.post(jsontext)
 }
 
 function putMember(m) {
@@ -69,7 +70,8 @@ function putMember(m) {
 	let url = "../Mservices/data/member/"+memberId
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
-    ajax.put(m)
+    var jsontext = JSON.stringify(m)
+    ajax.put(jsontext)
 }
 
 function deleteMember(m) {
