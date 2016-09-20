@@ -137,15 +137,6 @@ function editMember(){
 	//send changed data to database
 }
 
-//function addMember(){
-//	let newFName = prompt("Enter firstname", "");
-//	let newLName = prompt("Enter lastname", "");
-//	let newAddress = prompt("Enter address", "");
-//	let newPhone = prompt("Enter phone number", "");
-
-	// send new data to database 
-//}
-
 function addMember(){ //test,         addMember + getTable
 	let newFName = prompt("Enter firstname", "");
 	let newLName = prompt("Enter lastname", "");
