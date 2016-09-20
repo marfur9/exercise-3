@@ -81,7 +81,7 @@ function updateMember(jsontext){
 	}
 }
 
-function deleteMember(){
+function delMember(){
 	let table = document.getElementById("memberTable");
 	let idn = this.getAttribute("class");
 	let id = parseInt(idn.substring(1,idn.length));
@@ -96,8 +96,18 @@ function deleteMember(){
 			row=r;
 		}
 	}
+	let newFName = prompt("Enter firstname", row.cells[0].textContent);
+	let newLName = prompt("Enter lastname", row.cells[1].textContent);
+	let newAddress = prompt("Enter address", row.cells[2].textContent);
+	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
 	
+	var jsontext = 	"{\"memberId\":" + id +
+	",\"firstname\":" + newFName +
+	",\"lastname\":" + newLName +
+	",\"address\":" + newAddress +
+	",\"phone\":" + newPhone + '}';
 	table.tBodies[0].removeChild(row);
+	deleteMember(jsontext);
 }
 
 function editMember(){
@@ -123,7 +133,7 @@ function editMember(){
 	",\"lastname\":" + newLName +
 	",\"address\":" + newAddress +
 	",\"phone\":" + newPhone + '}';
-	updateMember(jsontext);
+	putMember(jsontext);
 	//send changed data to database
 }
 
@@ -151,7 +161,7 @@ function addMember(){ //test,         addMember + getTable
 	",\"phone\":" + newPhone + '}';
 	
 	//change the method here when server is up, boy
-	updateMember(jsontext);
+	postMember(jsontext);
 }
 
 window.addEventListener("load",init,true)
