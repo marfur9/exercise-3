@@ -116,8 +116,9 @@ function editMember(){
 	let newAddress = prompt("Enter address", row.cells[2].textContent);
 	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
 	
-	var jsontext = 	{memberId:id ,firstname: newFName, lastname:newLName, address:newAddress, phone:newPhone }
-	putMember(JSON.stringify(jsontext));
+	var json = 	{memberId:id ,firstname: newFName, lastname:newLName, address:newAddress, phone:newPhone }
+	let jsontext = JSON.stringify(json)
+	putMember(jsontext);
 }
 
 function addMember(){ 
@@ -127,8 +128,8 @@ function addMember(){
 	let newPhone = prompt("Enter phone number", "");
 	
 	
-	var jsontext = 	{firstname:newFName, lastname: newLName, address:newAddress,phone:newPhone}
-	
+	var json = 	{firstname:newFName, lastname: newLName, address:newAddress,phone:newPhone}
+	let jsontext = JSON.stringify(json)
 	postMember(JSON.stringify(jsontext));
 }
 
