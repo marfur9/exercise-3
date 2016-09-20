@@ -116,12 +116,8 @@ function editMember(){
 	let newAddress = prompt("Enter address", row.cells[2].textContent);
 	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
 	
-	var jsontext = 	"{\"memberId\":" + id +
-	",\"firstname\":" + newFName +
-	",\"lastname\":" + newLName +
-	",\"address\":" + newAddress +
-	",\"phone\":" + newPhone + '}';
-	putMember(jsontext);
+	var jsontext = 	{memberId:id ,firstname: newFName, lastname:newLName, address:newAddress, phone:newPhone }
+	putMember(JSON.stringify(jsontext));
 }
 
 function addMember(){ 
@@ -131,12 +127,9 @@ function addMember(){
 	let newPhone = prompt("Enter phone number", "");
 	
 	
-	var jsontext = 	"{\"firstname\":" + newFName +
-	",\"lastname\":" + newLName +
-	",\"address\":" + newAddress +
-	",\"phone\":" + newPhone + '}';
+	var jsontext = 	{firstname:newFName, lastname: newLName, address:newAddress,phone:newPhone}
 	
-	postMember(jsontext);
+	postMember(JSON.stringify(jsontext));
 }
 
 window.addEventListener("load",init,true)
