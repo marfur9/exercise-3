@@ -58,10 +58,10 @@ function getUpdates() {
 
 function postMember(m) {
 	let member = JSON.parse(m)
-	let url = "../Mservices/data/member/"
+	let url = "../Mservices/data/member"
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
-    ajax.post({'member': member})
+    ajax.post(null,{'member': member})
 }
 
 function putMember(m) {
