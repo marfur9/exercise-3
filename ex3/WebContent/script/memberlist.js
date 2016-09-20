@@ -81,25 +81,7 @@ function delMember(){
 	let table = document.getElementById("memberTable");
 	let idn = this.getAttribute("class");
 	let id = parseInt(idn.substring(1,idn.length));
-	
-	let row = null;
-	let rows = table.rows;
-	
-	for(let r of rows){
-		if(r.id==("r"+id)){
-			row=r;
-		}
-	}
-	let newFName = prompt("Enter firstname", row.cells[0].textContent);
-	let newLName = prompt("Enter lastname", row.cells[1].textContent);
-	let newAddress = prompt("Enter address", row.cells[2].textContent);
-	let newPhone = prompt("Enter phone number", row.cells[3].textContent);
-	
-	var jsontext = 	"{\"memberId\":" + id +
-	",\"firstname\":" + newFName +
-	",\"lastname\":" + newLName +
-	",\"address\":" + newAddress +
-	",\"phone\":" + newPhone + '}';
+	var jsontext = 	"{\"memberId\":" + id + '}';
 	deleteMember(jsontext);
 }
 
