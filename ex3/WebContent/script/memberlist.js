@@ -9,7 +9,6 @@ function init(){
 	let button = document.getElementById("addMember");
 	
 	button.addEventListener("click",addMember);
-	setInterval(getUpdates,10000);
 }
 
 

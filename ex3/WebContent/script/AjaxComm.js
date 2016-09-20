@@ -3,12 +3,13 @@
  */
 
 "use strict";
-  
-let memberId = null;
-let logId = -1;
+ 
 
 function onLoad() {
+	let memberId = null;
+	let logId = -1;
 	getUpdates();
+	setInterval(getUpdates,10000);
 }
 
 //Passes returned members to the memberlist
