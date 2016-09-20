@@ -42,6 +42,7 @@ function passMembers(m) {
 			}
 		} else {
 			console.log("Deleted members found: " + 1)
+			delRow(data.updates.deletedMembers)
 		}
 	}
 	
