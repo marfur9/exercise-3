@@ -57,21 +57,20 @@ function getUpdates() {
 }
 
 function postMember(m) {
+	let member = JSON.parse(m)
 	let url = "../Mservices/data/member/"
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
-    console.log(m)
-    ajax.post(m)
+    ajax.post({'member': member})
 }
 
 function putMember(m) {
 	let member = JSON.parse(m);
 	let memberId = member.memberId
-	let url = "../Mservices/data/member/"+memberId
+	let url = "../Mservices/data/member"
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = getUpdates
-    console.log(m)
-    ajax.put(m)
+    ajax.put([memberId],{'member': member})
 }
 
 function deleteMember(m) {
