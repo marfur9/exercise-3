@@ -3,11 +3,10 @@
  */
 
 "use strict";
- 
+let memberId = null;
+let logId = -1;
 
 function onLoad() {
-	let memberId = null;
-	let logId = -1;
 	getUpdates();
 	setInterval(getUpdates,10000);
 }
