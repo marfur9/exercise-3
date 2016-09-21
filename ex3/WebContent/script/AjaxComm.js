@@ -24,13 +24,13 @@ AjaxComm.passMembers = function(m) {
 			for (var i = 0; i < data.updates.newMembers.length; i++) {
 				var jsontext = JSON.stringify(data.updates.newMembers[i])
 				console.log(data.updates.newMembers[i])
-				updateMember(jsontext)
+				UIHandler.updateMember(jsontext)
 			}
 		} else {
 			console.log("New members found: 1")
 			var jsontext = JSON.stringify(data.updates.newMembers)
 			console.log(data.updates.newMembers)
-			updateMember(jsontext)
+			UIHandler.updateMember(jsontext)
 		}
 	}
 	
@@ -40,13 +40,13 @@ AjaxComm.passMembers = function(m) {
 			for (var i = 0; i < data.updates.updatedMembers.length; i++) {
 				var jsontext = JSON.stringify(data.updates.updatedMembers[i])
 				console.log(data.updates.updatedMembers[i])
-				updateMember(jsontext)
+				UIHandler.updateMember(jsontext)
 			}
 		} else {
 			console.log("Updated members found: 1")
 			var jsontext = JSON.stringify(data.updates.updatedMembers)
 			console.log(data.updates.updatedMembers)
-			updateMember(jsontext)
+			UIHandler.updateMember(jsontext)
 		}
 	}
 	
@@ -55,11 +55,11 @@ AjaxComm.passMembers = function(m) {
 			console.log("Deleted members found: " + data.updates.updatedMembers.length)
 			for (var i = 0; i < data.updates.deletedMembers.length; i++) {
 				console.log(data.updates.deletedMembers[i])
-				delRow(data.updates.deletedMembers[i].memberId)
+				UIHandler.delRow(data.updates.deletedMembers[i].memberId)
 			}
 		} else {
 			console.log("Deleted members found: " + 1)
-			delRow(data.updates.deletedMembers)
+			UIHandler.delRow(data.updates.deletedMembers)
 		}
 	}
 	
@@ -93,7 +93,7 @@ AjaxComm.putMember = function(m) {
 AjaxComm.deleteMember = function(m) {
 	let member = JSON.parse(m);
 	let memberId = member.memberId
-	let url = "../Mservices/data/member/"+AjaxComm.memberId
+	let url = "../Mservices/data/member/"+memberId
     const ajax = new AJAXConnection(url)
     ajax.onsuccess = AjaxComm.getUpdates
     ajax.del()
