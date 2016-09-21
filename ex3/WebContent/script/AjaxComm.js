@@ -3,17 +3,20 @@
  */
 "use strict";
 
-var logId = -1
+AjaxComm.logId = -1;
 
-function onLoad() {
-	getUpdates();
-	setInterval(getUpdates,10000);
+function AjaxComm() {
+}
+
+AjaxComm.onLoad = function() {
+	AjaxComm.getUpdates();
+	setInterval(AjaxComm.getUpdates,10000);
 }
 
 //Passes returned members to the memberlist
-function passMembers(m) {
+AjaxComm.passMembers = function(m) {
 	var data = JSON.parse(m);
-	logId = data.updates.logId;
+	AjaxComm.logId = data.updates.logId;
 	
 	if (data.updates.newMembers != null) {
 		if (data.updates.newMembers.length != null) {
@@ -63,38 +66,39 @@ function passMembers(m) {
 	
 }
 
-function getUpdates() {
-	let url = "../Mservices/data/updates/"+logId
+AjaxComm.getUpdates = function() {
+	let url = "../Mservices/data/updates/"+AjaxComm.logId
     const ajax = new AJAXConnection(url)
-    ajax.onsuccess = passMembers
+    ajax.onsuccess = AjaxComm.passMembers
     ajax.get()
 }
 
-function postMember(m) {
+AjaxComm.postMember = function(m) {
 	let member = JSON.parse(m)
 	let url = "../Mservices/data/member"
     const ajax = new AJAXConnection(url)
-    ajax.onsuccess = getUpdates
+    ajax.onsuccess = AjaxComm.getUpdates
     ajax.post(null,{'member': member})
 }
 
-function putMember(m) {
+AjaxComm.putMember = function(m) {
 	let member = JSON.parse(m);
 	let memberId = member.memberId
 	let url = "../Mservices/data/member"
     const ajax = new AJAXConnection(url)
-    ajax.onsuccess = getUpdates
+    ajax.onsuccess = AjaxComm.getUpdates
     ajax.put([memberId],{'member': member})
 }
 
-function deleteMember(m) {
+AjaxComm.deleteMember = function(m) {
 	let member = JSON.parse(m);
 	let memberId = member.memberId
-	let url = "../Mservices/data/member/"+memberId
+	let url = "../Mservices/data/member/"+AjaxComm.memberId
     const ajax = new AJAXConnection(url)
-    ajax.onsuccess = getUpdates
+    ajax.onsuccess = AjaxComm.getUpdates
     ajax.del()
 }
+
     
 
-window.addEventListener("DOMContentLoaded",onLoad,true)
+window.addEventListener("DOMContentLoaded",AjaxComm.onLoad,true)
