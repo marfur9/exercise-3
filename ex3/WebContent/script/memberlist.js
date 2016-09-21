@@ -4,17 +4,18 @@
 "use strict";
 
 
-function init(){
+
+function UIHandler(){
+}
+
+UIHandler.init = function(){
 	let table = document.getElementById("memberTable");
 	let button = document.getElementById("addMember");
 	
-	button.addEventListener("click",addMember);
+	button.addEventListener("click",UIHandler.addMember);
 }
 
-
-
-
-function updateMember(jsontext){
+UIHandler.updateMember = function(jsontext){
 	let member = JSON.parse(jsontext);
 	let table = document.getElementById("memberTable");
 	let row = null;
@@ -71,21 +72,21 @@ function updateMember(jsontext){
 		editButton.setAttribute("class", ("r"+member.memberId));
 		editCell.appendChild(editButton);
 		
-		editButton.addEventListener("click", editMember);
-		deleteButton.addEventListener("click", delMember);
+		editButton.addEventListener("click", UIHandler.editMember);
+		deleteButton.addEventListener("click", UIHandler.delMember);
 		
 	}
 }
 
-function delMember(){
+UIHandler.delMember = function(){
 	let table = document.getElementById("memberTable");
 	let idn = this.getAttribute("class");
 	let id = parseInt(idn.substring(1,idn.length));
 	var jsontext = 	"{\"memberId\":" + id + '}';
-	deleteMember(jsontext);
+	AjaxComm.deleteMember(jsontext);
 }
 
-function delRow(id){
+UIHandler.delRow = function(id){
 	let table = document.getElementById("memberTable");
 	let row = null;
 	let rows = table.rows;
@@ -98,7 +99,7 @@ function delRow(id){
 	table.tBodies[0].removeChild(row);
 }
 
-function editMember(){
+UIHandler.editMember = function(){
 	let idn = this.getAttribute("class");
 	let id = parseInt(idn.substring(1,idn.length));
 	let table = document.getElementById("memberTable");
@@ -118,10 +119,10 @@ function editMember(){
 	
 	var json = 	{memberId:id ,firstname: newFName, lastname:newLName, address:newAddress, phone:newPhone }
 	let jsontext = JSON.stringify(json)
-	putMember(jsontext);
+	AjaxComm.putMember(jsontext);
 }
 
-function addMember(){ 
+UIHandler.addMember = function(){ 
 	let newFName = prompt("Enter firstname", "");
 	let newLName = prompt("Enter lastname", "");
 	let newAddress = prompt("Enter address", "");
@@ -130,7 +131,7 @@ function addMember(){
 	
 	var json = 	{firstname:newFName, lastname: newLName, address:newAddress,phone:newPhone}
 	let jsontext = JSON.stringify(json)
-	postMember(jsontext);
+	AjaxComm.postMember(jsontext);
 }
 
-window.addEventListener("load",init,true)
+window.addEventListener("load",UIHandler.init,true)
