@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="ex3">
+    <wb-module deploy-name="Exercise 3 - h146153">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="ex3"/>
-        <property name="java-output-path" value="/ex3/build/classes"/>
+        <property name="java-output-path" value="/Exercise 3 - h146153/build/classes"/>
+        <property name="context-root" value="Exercise 3 - h146153"/>
     </wb-module>
 </project-modules>
